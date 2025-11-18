@@ -40,10 +40,13 @@ public class BadIOGUI {
      * Creates a new BadIOGUI.
      */
     public BadIOGUI() {
+        final JPanel myCanvas = new JPanel();
+        myCanvas.setLayout(new BoxLayout(myCanvas,BoxLayout.X_AXIS));
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
+        canvas.add(myCanvas, BorderLayout.CENTER);
+        myCanvas.add(write);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*

@@ -51,7 +51,7 @@ public class BadIOGUI {
         final JButton read = new JButton("Read");
         myCanvas.add(write);
         myCanvas.add(read);
-        frame.add(myCanvas, BorderLayout.CENTER);
+        canvas.add(myCanvas, BorderLayout.CENTER);
         frame.setContentPane(myCanvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*

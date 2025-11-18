@@ -5,7 +5,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.text.html.StyleSheet.BoxPainter;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,8 +15,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-//import java.nio.file.Files;
-//import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -48,9 +49,9 @@ public class BadIOGUI {
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
         final JButton read = new JButton("Read");
-        myCanvas.add(read);
         myCanvas.add(write);
-        frame.add(myCanvas,BorderLayout.CENTER);
+        myCanvas.add(read);
+        frame.add(myCanvas, BorderLayout.CENTER);
         frame.setContentPane(myCanvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -75,10 +76,18 @@ public class BadIOGUI {
             }
         });
         read.addActionListener(new ActionListener() {
+            private final Path filepath = Paths.get(PATH);
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println("Write button pressed"); // NOPMD
-            }   
+                try {
+                    final List<String> lines = Files.readAllLines(filepath, StandardCharsets.UTF_8);
+                    for (final String stringIndex : lines) {
+                        System.out.println(stringIndex); // NOPMD
+                    }
+                } catch (final IOException t) {
+                    t.printStackTrace(); // NOPMD
+                }
+            }
         });
     }
 

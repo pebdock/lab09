@@ -50,7 +50,7 @@ public final class SimpleGUI {
         historyButton.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 myArea.setText(myController.getHistory().toString());
             }
         });

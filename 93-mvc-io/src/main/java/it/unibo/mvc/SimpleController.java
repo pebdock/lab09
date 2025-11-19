@@ -16,7 +16,7 @@ public final class SimpleController implements Controller {
 
     @Override
     public void setNext(final String nextString) {
-        if (nextString == null) {
+        if (nextString.isBlank()) {
             throw new IllegalArgumentException("The String inserted is null");
         } else {
             this.current = nextString;

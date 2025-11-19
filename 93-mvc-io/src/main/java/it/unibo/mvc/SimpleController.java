@@ -1,6 +1,8 @@
 package it.unibo.mvc;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple controller responsible of I/O access.
@@ -8,28 +10,32 @@ import java.util.ArrayList;
  */
 public final class SimpleController implements Controller {
 
+    private static PrintStream ps = System.out;
+    private final List<String> stringList = new ArrayList<>();
+    private String current;
+
     @Override
     public void setNext(final String nextString) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setNext'");
+        if (nextString == null) {
+            throw new IllegalArgumentException("The String inserted is null");
+        } else {
+            this.current = nextString;
+        }
     }
 
     @Override
     public String getNext() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNext'");
+        return this.current;
     }
 
     @Override
     public ArrayList<String> getHistory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHistory'");
+        return new ArrayList<>(this.stringList);
     }
 
     @Override
     public void printCurrent() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printCurrent'");
+        ps.println(this.current);
+        this.stringList.add(this.current);
     }
-
 }

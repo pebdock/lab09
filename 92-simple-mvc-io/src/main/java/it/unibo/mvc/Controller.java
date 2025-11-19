@@ -12,7 +12,7 @@ import java.nio.file.Paths;
  */
 
 public class Controller {
-    private static final String PATH = System.getProperty("user.home")
+    public static final String PATH = System.getProperty("user.home")
     + File.separator
     + "output.txt";
 

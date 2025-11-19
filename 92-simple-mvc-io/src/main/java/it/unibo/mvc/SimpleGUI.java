@@ -5,8 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -22,23 +20,16 @@ public final class SimpleGUI {
     private static final String SAVE = "Save";
     private static final String OPTION = "Do you really want to save?";
     private static final int PROPORTION = 5;
-    private final JFrame frame = new JFrame("SCEMO");
+    private final JFrame frame = new JFrame(this.getClass().getSimpleName());
 
     /**
      * Create a new SimpleGUI.
      */
     public SimpleGUI() {
         final JPanel myCanvas = new JPanel();
-        final JPanel newCanvas = new JPanel();
-        newCanvas.setLayout(new BorderLayout());
         myCanvas.setLayout(new BorderLayout());
         final JTextArea myText = new JTextArea();
         final JButton myButton = new JButton(SAVE);
-        final JTextField myTextField = new JTextField();
-        final JButton myButton2 = new JButton("Browse...");
-        newCanvas.add(myButton2, BorderLayout.EAST);
-        newCanvas.add(myTextField, BorderLayout.WEST);
-        myCanvas.add(newCanvas, BorderLayout.NORTH);
         myCanvas.add(myText, BorderLayout.CENTER);
         myCanvas.add(myButton, BorderLayout.SOUTH);
         frame.setContentPane(myCanvas);
@@ -84,6 +75,7 @@ public final class SimpleGUI {
      * @param args the arguments that you want to add when using it
      */
     public static void main(final String... args) {
+        new SimpleGUIWithFileChooser().display();
         new SimpleGUI().display();
     }
 }
